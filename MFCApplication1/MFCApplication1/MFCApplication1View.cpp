@@ -50,7 +50,7 @@ BOOL CMFCApplication1View::PreCreateWindow(CREATESTRUCT& cs)
 
 // CMFCApplication1View 绘制
 
-void CMFCApplication1View::OnDraw(CDC* /*pDC*/)
+void CMFCApplication1View::OnDraw(CDC* pDC)
 {
 	CMFCApplication1Doc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
@@ -58,6 +58,13 @@ void CMFCApplication1View::OnDraw(CDC* /*pDC*/)
 		return;
 
 	// TODO: 在此处为本机数据添加绘制代码
+	CString s = _T("我是***");
+	pDC->TextOutW(100, 100, s);
+	int A = 123;
+	CString cs;
+	cs.Format(_T("%d"), A);
+	pDC->TextOutW(200, 200, cs);
+
 }
 
 
