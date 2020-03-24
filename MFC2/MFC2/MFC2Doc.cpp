@@ -30,6 +30,8 @@ END_MESSAGE_MAP()
 CMFC2Doc::CMFC2Doc()
 {
 	// TODO: 在此添加一次性构造代码
+	m_crlRect.left = 30;    m_crlRect.top = 30;     //矩形初始化
+	m_crlRect.right = 80;    m_crlRect.bottom = 80;
 
 }
 

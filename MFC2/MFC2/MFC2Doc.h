@@ -17,7 +17,7 @@ public:
 
 // 操作
 public:
-
+	CRect m_crlRect;    //定义一个矩形,CRect有左右上下。
 // 重写
 public:
 	virtual BOOL OnNewDocument();

@@ -22,6 +22,8 @@
 IMPLEMENT_DYNCREATE(CMFC2View, CView)
 
 BEGIN_MESSAGE_MAP(CMFC2View, CView)
+	ON_WM_KEYDOWN()
+	ON_WM_LBUTTONDOWN()
 END_MESSAGE_MAP()
 
 // CMFC2View 构造/析构
@@ -46,7 +48,7 @@ BOOL CMFC2View::PreCreateWindow(CREATESTRUCT& cs)
 
 // CMFC2View 绘制
 
-void CMFC2View::OnDraw(CDC* /*pDC*/)
+void CMFC2View::OnDraw(CDC* pDC)
 {
 	CMFC2Doc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
@@ -54,6 +56,7 @@ void CMFC2View::OnDraw(CDC* /*pDC*/)
 		return;
 
 	// TODO: 在此处为本机数据添加绘制代码
+	pDC->Rectangle(pDoc->m_crlRect);
 }
 
 
@@ -79,3 +82,67 @@ CMFC2Doc* CMFC2View::GetDocument() const // 非调试版本是内联的
 
 
 // CMFC2View 消息处理程序
+
+
+void CMFC2View::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	CMFC2Doc*pDoc = GetDocument();
+	CRect clientRec;   //构造矩形
+	GetClientRect(&clientRec);  //取得客户区大小
+	switch (nChar)
+	{
+	case VK_LEFT:     //按下鼠标左键虚拟码
+		if (pDoc->m_crlRect.left > 0)
+		{
+			pDoc->m_crlRect.left -= 5;
+			pDoc->m_crlRect.right -= 5;
+		}
+		break;
+	case VK_RIGHT:
+		if (pDoc->m_crlRect.right <= (clientRec.right - clientRec.left))
+		{
+			pDoc->m_crlRect.left += 5;
+			pDoc->m_crlRect.right += 5;
+		}
+		break;
+	case VK_UP:
+		if (pDoc->m_crlRect.top > 0)
+		{
+			pDoc->m_crlRect.top -= 5;
+			pDoc->m_crlRect.bottom -= 5;
+		}
+		break;
+	case VK_DOWN:
+		if (pDoc->m_crlRect.bottom <= (clientRec.bottom - clientRec.top))
+		{
+			pDoc->m_crlRect.top += 5;
+			pDoc->m_crlRect.bottom += 5;
+		}
+		break;
+	case VK_HOME:
+		pDoc->m_crlRect.right += 8;
+		pDoc->m_crlRect.bottom += 8;
+		break;
+	case VK_END:
+		pDoc->m_crlRect.left += 8;
+		pDoc->m_crlRect.top += 8;
+		break;
+	}
+	InvalidateRect(NULL,TRUE);
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+
+	CView::OnKeyDown(nChar, nRepCnt, nFlags);
+}
+
+
+void CMFC2View::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	CMFC2Doc*pDoc = GetDocument();
+	pDoc->m_crlRect.left = 30;
+	pDoc->m_crlRect.right = 80;
+	pDoc->m_crlRect.top = 30;
+	pDoc->m_crlRect.bottom = 80;
+	InvalidateRect(NULL, TRUE);
+	CView::OnLButtonDown(nFlags, point);
+}
