@@ -26,7 +26,6 @@ public:
 	virtual void InitializeSearchContent();
 	virtual void OnDrawThumbnail(CDC& dc, LPRECT lprcBounds);
 #endif // SHARED_HANDLERS
-
 // й╣ож
 public:
 	virtual ~Ctext1Doc();
