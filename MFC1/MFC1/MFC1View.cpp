@@ -86,7 +86,6 @@ CMFC1Doc* CMFC1View::GetDocument() const // 非调试版本是内联的
 void CMFC1View::OnMouseMove(UINT nFlags, CPoint point)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
-
 	CString s;
 	CClientDC dc(this);
 	CString cs = _T("WM_MOUSEMOVE");
