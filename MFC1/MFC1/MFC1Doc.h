@@ -17,7 +17,7 @@ public:
 
 // ²Ù×÷
 public:
-	char m_tagRec;
+	CRect m_tagRec;
 // ÖØÐ´
 public:
 	virtual BOOL OnNewDocument();
