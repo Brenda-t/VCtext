@@ -61,8 +61,6 @@ void Ctext9View::OnDraw(CDC* pDC)
 		return;
 
 	// TODO: 在此处为本机数据添加绘制代码
-	for (int i = 0; i < pDoc->ca.GetSize(); i++)
-		pDC->Ellipse(pDoc->ca.GetAt(i));
 }
 
 
