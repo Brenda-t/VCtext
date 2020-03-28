@@ -32,7 +32,7 @@ END_MESSAGE_MAP()
 CMFC1View::CMFC1View()
 {
 	// TODO: 在此处添加构造代码
-
+	m_pt = 0;
 }
 
 CMFC1View::~CMFC1View()
@@ -86,13 +86,16 @@ CMFC1Doc* CMFC1View::GetDocument() const // 非调试版本是内联的
 void CMFC1View::OnMouseMove(UINT nFlags, CPoint point)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
-	CString s;
-	CClientDC dc(this);
-	CString cs = _T("WM_MOUSEMOVE");
-	dc.TextOutW(20, 20, cs);
-	s.Format(_T("X = %d Y = %d"), point.x, point.y);
-	dc.TextOutW(200, 20, s);
+	if (set)
+	{
+		CString s;
+		CClientDC dc(this);
+		CString cs = _T("WM_MOUSEMOVE");
+		dc.TextOutW(20, 20, cs);
+		s.Format(_T("X = %d Y = %d"), point.x, point.y);
+		dc.TextOutW(200, 20, s);
 
+	}
 	CView::OnMouseMove(nFlags, point);
 }
 
@@ -100,7 +103,8 @@ void CMFC1View::OnMouseMove(UINT nFlags, CPoint point)
 void CMFC1View::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
-	SetCapture();     //捕获鼠标消息
+	m_pt = point;
+	set = true;
 	CView::OnLButtonDown(nFlags, point);
 }
 
@@ -108,7 +112,7 @@ void CMFC1View::OnLButtonDown(UINT nFlags, CPoint point)
 void CMFC1View::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
-	ReleaseCapture();         //释放鼠标捕获
+	set = false;
 	CView::OnLButtonUp(nFlags, point);
 }
 
