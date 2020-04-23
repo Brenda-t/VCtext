@@ -122,5 +122,18 @@ void Ctext175View::OnLButtonDown(UINT nFlags, CPoint point)
 
 		dc.Ellipse(re);                             //GetDC()->Ellipse(re);
 	}
+
+	/*
+	CClientDC dc(this);
+	if(mpt.x>=re.left&&mpt.y>=re.top&&mpt.x<=re.bottom&&mpt.y<=re.right)
+	{
+	CBrush br;
+	CPen pen(PS_DASH,1,RGB(0,255,0));
+	br.CreateStockObiect(NULL_BRUSH);
+	dc.SelectObject(&pen);
+	dc.SelectObject(&br);
+	dc.Rectangle(re.left,re.top,re.right,re.bottom);
+	}
+	*/
 	CView::OnLButtonDown(nFlags, point);
 }
