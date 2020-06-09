@@ -188,10 +188,10 @@ void CODBC3View::draw_pic(CString file)
 		sx = 0;
 		sy = (picrect.Height() - h) / 2;
 	}
-*/
+	*/
 	pDC->SetStretchBltMode(HALFTONE);
 	img.Draw(pDC->m_hDC, picrect.top, picrect.left, picrect.right, picrect.bottom);
-	//img.Draw(pDC->m_hDC, sx, sy, w, h);
+//	img.Draw(pDC->m_hDC, sx, sy, w, h);
 	ReleaseDC(pDC);
 }
 
