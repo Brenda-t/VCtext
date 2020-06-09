@@ -52,7 +52,7 @@ BEGIN
     "\r\n"
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
     "LANGUAGE 4, 2\r\n"
-    "#include ""res\\ODBC3.rc2""  // 非 Microsoft Visual C++ 编辑的资源\r\n"
+    "#include ""res\\ODBC5.rc2""  // 非 Microsoft Visual C++ 编辑的资源\r\n"
     "#include ""l.CHS\\afxres.rc""      // 标准组件\r\n"
     "#include ""l.CHS\\afxdb.rc""        // 数据库资源\r\n"
     "#endif\r\n"
@@ -69,9 +69,9 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDR_MAINFRAME           ICON                    "res\\ODBC3.ico"
+IDR_MAINFRAME           ICON                    "res\\ODBC5.ico"
 
-IDR_ODBC3TYPE           ICON                    "res\\ODBC3Doc.ico"
+IDR_ODBC5TYPE           ICON                    "res\\ODBC5Doc.ico"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -137,7 +137,7 @@ BEGIN
     END
     POPUP "帮助(&H)"
     BEGIN
-        MENUITEM "关于 ODBC3(&A)...",             ID_APP_ABOUT
+        MENUITEM "关于 ODBC5(&A)...",             ID_APP_ABOUT
     END
 END
 
@@ -169,22 +169,23 @@ END
 
 IDD_ABOUTBOX DIALOGEX 0, 0, 170, 62
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "关于 ODBC3"
+CAPTION "关于 ODBC5"
 FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,14,14,21,20
-    LTEXT           "ODBC3，1.0 版",IDC_STATIC,42,14,114,8,SS_NOPREFIX
+    LTEXT           "ODBC5，1.0 版",IDC_STATIC,42,14,114,8,SS_NOPREFIX
     LTEXT           "Copyright (C) 2020",IDC_STATIC,42,26,114,8
     DEFPUSHBUTTON   "确定",IDOK,113,41,50,14,WS_GROUP
 END
 
-IDD_ODBC3_FORM DIALOGEX 0, 0, 320, 200
+IDD_ODBC5_FORM DIALOGEX 0, 0, 320, 200
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
 FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    EDITTEXT        IDC_EDIT1,24,40,40,14,ES_AUTOHSCROLL | ES_READONLY
-    PUSHBUTTON      "放大显示",IDC_BUTTON1,18,97,50,14
-    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,104,31,185,109
+    EDITTEXT        IDC_EDIT1,36,45,52,20,ES_AUTOHSCROLL
+    PUSHBUTTON      "增加",IDC_ADD,173,35,50,14
+    PUSHBUTTON      "修改",IDC_change,171,88,50,14
+    PUSHBUTTON      "删除",IDC_Delete,172,139,50,14
 END
 
 IDD_DIALOG1 DIALOGEX 0, 0, 310, 177
@@ -194,7 +195,17 @@ FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "确定",IDOK,199,156,50,14
     PUSHBUTTON      "取消",IDCANCEL,253,156,50,14
-    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,23,23,257,107
+    EDITTEXT        IDC_EDIT1,55,48,55,23,ES_AUTOHSCROLL
+END
+
+IDD_DIALOG2 DIALOGEX 0, 0, 310, 177
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,199,156,50,14
+    PUSHBUTTON      "取消",IDCANCEL,253,156,50,14
+    EDITTEXT        IDC_EDIT1,49,36,57,22,ES_AUTOHSCROLL
 END
 
 
@@ -221,11 +232,11 @@ BEGIN
         BLOCK "080404B0"
         BEGIN
             VALUE "CompanyName", "TODO: <公司名>"
-            VALUE "FileDescription", "ODBC3"
+            VALUE "FileDescription", "ODBC5"
             VALUE "FileVersion", "1.0.0.1"
-            VALUE "InternalName", "ODBC3.exe"
+            VALUE "InternalName", "ODBC5.exe"
             VALUE "LegalCopyright", "TODO:  (C) <公司名>。  保留所有权利。"
-            VALUE "OriginalFilename", "ODBC3.exe"
+            VALUE "OriginalFilename", "ODBC5.exe"
             VALUE "ProductName", "TODO: <产品名>"
             VALUE "ProductVersion", "1.0.0.1"
         END
@@ -253,7 +264,7 @@ BEGIN
         BOTTOMMARGIN, 55
     END
 
-    IDD_ODBC3_FORM, DIALOG
+    IDD_ODBC5_FORM, DIALOG
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 313
@@ -262,6 +273,14 @@ BEGIN
     END
 
     IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 303
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 170
+    END
+
+    IDD_DIALOG2, DIALOG
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 303
@@ -277,12 +296,17 @@ END
 // AFX_DIALOG_LAYOUT
 //
 
-IDD_ODBC3_FORM AFX_DIALOG_LAYOUT
+IDD_ODBC5_FORM AFX_DIALOG_LAYOUT
 BEGIN
     0
 END
 
 IDD_DIALOG1 AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG2 AFX_DIALOG_LAYOUT
 BEGIN
     0
 END
@@ -301,12 +325,12 @@ END
 
 STRINGTABLE
 BEGIN
-    IDR_MAINFRAME           "ODBC3\n\nODBC3\n\n\nODBC3.Document\nODBC3.Document"
+    IDR_MAINFRAME           "ODBC5\n\nODBC5\n\n\nODBC5.Document\nODBC5.Document"
 END
 
 STRINGTABLE
 BEGIN
-    AFX_IDS_APP_TITLE       "ODBC3"
+    AFX_IDS_APP_TITLE       "ODBC5"
     AFX_IDS_IDLEMESSAGE     "就绪"
 END
 
@@ -425,7 +449,7 @@ END
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
 LANGUAGE 4, 2
-#include "res\ODBC3.rc2"  // 非 Microsoft Visual C++ 编辑的资源
+#include "res\ODBC5.rc2"  // 非 Microsoft Visual C++ 编辑的资源
 #include "l.CHS\afxres.rc"      // 标准组件
 #include "l.CHS\afxdb.rc"        // 数据库资源
 #endif
